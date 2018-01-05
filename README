@@ -1,0 +1,13 @@
+Maria Costin Bogdan, 323CB
+Compilare:
+	make
+Modelitate de rulare:
+	./server 7000 "file.txt"
+	./client "127.0.0.1" 7000
+
+	Pentru client, am facut un factory, care imi va returna un numar specific pentru fiecare operatie in parte.In functia main, la inceput, am populat structurile cu datele primite, dupa care am construit socket-ul pentru protocolul TCP si cel pt UDP.Dupa care, intr-un while(true) (Pana primesc exit), am citit de la tastatura input-ul, dupa care am verificat ce operatie mi se cere. Pentru fiecare operatie in parte, am trimis mesaje de tipul TCP sau UDP serverului.Am o variabila sesiunePornita, care imi va spune mie daca am o sesiune pornita la un moment de timp, si mai am o variabila trimiteMesaj, care imi va spune mie daca pentru input-ul primit trebuie sa primesc mesaj.De exemplu, daca primesc un listSold, iar eu nu am niciun utilizator autentificat, trimiteMesaj va fi zero iar mesajul nu va fi trimis.
+	Pentru server, am deschis la inceput socket-ul pentru fiecare protocol, dupa care, cu ajutorul functiei select am multiplexat comunicarea. Inainte de asta am deschis fisierul de input primit ca parametru si am salvat intr-un vector de structuri, declarate in "helpers.h", datele primite. Am 2 multimi, una pentru toate socket-urile, si una pentru socket-urile de tipul UDP.In while, verific daca este mesaj UDP(adica daca socketul gasit apartine multimii udp), iar in cazul in care nu este inseamna ca e TCP. Daca este UDP, transmit mesajul "Trimite parola", dupa care astept parola, daca este corecta trimit "client deblocat", daca nu trimit "deblocare esuata". Daca este tcp, cu ajutorul functiei factory(ca la fisierul client) vad ce tip de mesaj este, si fac operatiile specifice. 
+Make
+Am adaugat si comentarii pe cod, din care eu cred ca este mai usor de inteles codul decat din readme.
+
+PS: Nu am facut quit primit de server, pentru ca asta implica multiplexarea pentru mesajele primite de client si era mare bataie de cap :(. Am testat tema pe mai multe input-uri, toate functiile(cu exceptia quit primit de server) functioneaza cum trebuie.
