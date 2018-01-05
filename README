@@ -10,4 +10,4 @@ Modelitate de rulare:
 Make
 Am adaugat si comentarii pe cod, din care eu cred ca este mai usor de inteles codul decat din readme.
 
-PS: Nu am facut quit primit de server, pentru ca asta implica multiplexarea pentru mesajele primite de client si era mare bataie de cap :(. Am testat tema pe mai multe input-uri, toate functiile(cu exceptia quit primit de server) functioneaza cum trebuie.
+
